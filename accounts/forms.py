@@ -15,4 +15,7 @@ class orderForm(ModelForm):
             "status":Select(attrs={
                 'class':'form-control',
             }),
+            "note":TextInput(attrs={
+                'class':'form-control',
+            }),
         }

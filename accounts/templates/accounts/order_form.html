@@ -5,32 +5,32 @@
 {% block content %}
 
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <div class="row mb-4 mt-5">
-        <div class="col">
-            <div class="form-outline">
-                {{ form.customer}}
-                <label class="form-label" for="form3Example1">Customer</label>
+<div class="container mt-5">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <div class="row mt-2 ">
+
+            <div class="col ">
+                Product: {{ form.product }}
             </div>
-        </div>
-        <div class="col">
-            <div class="form-outline">
-                {{ form.product}}
-                <label class="form-label" for="form3Example2">Product</label>
+            <div class="col ">
+                Status: {{ form.status }}
             </div>
+            <div class="col ">
+                Delete: {{ form.DELETE }}
+            </div>
+
         </div>
-    </div>
+        <hr>
 
-    <div class="form-outline mb-4">
-        {{ form.status}}
-        <label class="form-label" for="form3Example3">Status</label>
-    </div>
+        {% endfor %}
 
 
-    <input class="btn  btn-outline-info mt-5" type="submit" name="Submit" value="Submit">
-</form>
-
+        <input class="btn  btn-outline-success mt-5" type="submit" name="Submit" value="Submit">
+    </form>
+</div>
 
 
 {% endblock %}

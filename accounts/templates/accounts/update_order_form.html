@@ -1,0 +1,45 @@
+{% extends 'accounts/main.html' %}
+{% block title %} Update Order form {% endblock %}
+
+
+{% block content %}
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="row mb-4 mt-5">
+        <div class="col">
+            <div class="form-outline">
+                {{ form.customer}}
+                <label class="form-label" for="form3Example1">Customer</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                {{ form.product}}
+                <label class="form-label" for="form3Example2">Product</label>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-outline">
+                {{ form.note}}
+                <label class="form-label" for="form3Example2">Note</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4 mt-5">
+        <div class="col-md-4">
+            {{ form.status}}
+            <label class="form-label" for="form3Example3">Status</label>
+        </div>
+        <div class="col-md-4">
+            <input class="btn  btn-outline-success" type="submit" name="Submit" value="Edit">
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}
