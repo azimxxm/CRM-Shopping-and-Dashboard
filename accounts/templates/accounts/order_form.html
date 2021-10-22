@@ -1,0 +1,36 @@
+{% extends 'accounts/main.html' %}
+{% block title %} Order form {% endblock %}
+
+
+{% block content %}
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="row mb-4 mt-5">
+        <div class="col">
+            <div class="form-outline">
+                {{ form.customer}}
+                <label class="form-label" for="form3Example1">Customer</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                {{ form.product}}
+                <label class="form-label" for="form3Example2">Product</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-outline mb-4">
+        {{ form.status}}
+        <label class="form-label" for="form3Example3">Status</label>
+    </div>
+
+
+    <input class="btn  btn-outline-info mt-5" type="submit" name="Submit" value="Submit">
+</form>
+
+
+
+{% endblock %}
