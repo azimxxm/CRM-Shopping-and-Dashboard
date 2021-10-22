@@ -20,12 +20,15 @@ def registerPage(request):
             username = form.cleaned_data.get('username')
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            Customer.objects.create(user=user)
             messages.success(request, 'Account was created for ' + username)
             return redirect('login')
     context = {
         'form': form,
     }
     return render(request, 'accounts/register.html', context)
+
+
 
 
 @unauthenticated_user
@@ -72,10 +75,36 @@ def home(request):
     }
     return render(request, 'accounts/dashboard.html', contaxt)
 
-
+@allowed_users(allowed_roles=['customer'])
+@login_required(login_url='login')
 def userPage(request):
-    context = {}
+    orders = request.user.customer.order_set.all()
+    total_orders = orders.count()
+    delivered = orders.filter(status="Delivered").count()
+    panding = orders.filter(status="Pending").count()
+    context = {
+        'orders':orders,
+        'total_orders': total_orders,
+        'delivered': delivered,
+        'panding': panding
+    }
     return render(request, 'accounts/user.html', context)
+
+@allowed_users(allowed_roles=['customer'])
+@login_required(login_url='login')
+def accountSettings(request):
+    customer = request.user.customer
+    form = CustomerForm(instance=customer)
+    if request.method == "POST":
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+            
+    contaxt = {
+        'form':form,
+    }
+    return render(request, 'accounts/account_settings.html', contaxt)
+
 
 @allowed_users(allowed_roles=['admin'])
 @login_required(login_url='login')

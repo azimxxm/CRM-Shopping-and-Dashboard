@@ -5,6 +5,27 @@ from django import forms
 from django.forms import *
 from .models import *
 
+class CustomerForm(ModelForm):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+        exclude = ['user']
+        widgets = {
+            "name":TextInput(attrs={
+                'class':'form-control',
+            }),
+            "phone":TextInput(attrs={
+                'class':'form-control',
+            }),
+            "email":TextInput(attrs={
+                'class':'form-control',
+            }),
+            "images":FileInput(attrs={
+                'class':'form-control',
+            }),
+        }
+
+
 class orderForm(ModelForm):
     class Meta:
         model = Order
