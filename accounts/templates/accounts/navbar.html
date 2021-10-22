@@ -1,7 +1,16 @@
 {% load static %}
+<style>
+    .hello-msg {
+        width: 100px;
+        font-size: 18px;
+        color: #fff;
+        margin-right: 15px;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="nav-link" href="{% url 'home' %}"><img class="logo" src="{% static '/images/logo.png' %}" id="logo" alt="logo.png"></a>
+        <a class="nav-link" href="{% url 'home' %}"><img class="logo" src="{% static '/images/logo.png' %}" id="logo"
+                alt="logo.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,4 +26,7 @@
             </ul>
         </div>
     </div>
+    <span class="hello-msg">Hello,</span> 
+    <span class="hello-msg"><a class="btn-outline-info" href="">{{ request.user }}</a></span>
+    <span class="hello-msg"><a class="btn btn-sm btn-warning" href="{% url 'logout' %}">Logout</a></span>
 </nav>
