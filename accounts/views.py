@@ -60,7 +60,7 @@ def home(request):
     customers = Customer.objects.all()
 
     total_customers = customers.count()
-
+    
     total_orders = orders.count()
     delivered = orders.filter(status="Delivered").count()
     panding = orders.filter(status="Pending").count()
@@ -70,7 +70,7 @@ def home(request):
         'customers': customers,
         'total_orders': total_orders,
         'delivered': delivered,
-        'panding': panding
+        'panding': panding,
 
     }
     return render(request, 'accounts/dashboard.html', contaxt)
@@ -134,15 +134,22 @@ def customer(request, pk):
     }
     return render(request, 'accounts/customers.html', contaxt)
 
+
 @allowed_users(allowed_roles=['admin'])
 @login_required(login_url='login')
 def updateCustomer(request, pk):
     customer = Customer.objects.get(id=pk)
     form = UpdateCustomerForm(instance=customer)
+    if request.method == "POST":
+        form = UpdateCustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
     contaxt = {
-        'form': form,
+        'form': form
     }
     return render(request, 'accounts/update_customer.html', contaxt)
+
 
 
 @allowed_users(allowed_roles=['admin'])
