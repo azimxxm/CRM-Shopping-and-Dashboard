@@ -52,3 +52,4 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Name: {str(self.customer)}, Product: {str(self.product.name)}'
+

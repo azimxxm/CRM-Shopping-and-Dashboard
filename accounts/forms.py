@@ -25,6 +25,24 @@ class CustomerForm(ModelForm):
             }),
         }
 
+class UpdateCustomerForm(ModelForm):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+        widgets = {
+            "name":TextInput(attrs={
+                'class':'form-control',
+            }),
+            "phone":TextInput(attrs={
+                'class':'form-control',
+            }),
+            "email":TextInput(attrs={
+                'class':'form-control',
+            }),
+            "images":FileInput(attrs={
+                'class':'form-control',
+            }),
+        }
 
 class orderForm(ModelForm):
     class Meta:

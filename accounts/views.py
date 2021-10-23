@@ -136,6 +136,17 @@ def customer(request, pk):
 
 @allowed_users(allowed_roles=['admin'])
 @login_required(login_url='login')
+def updateCustomer(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = UpdateCustomerForm(instance=customer)
+    contaxt = {
+        'form': form,
+    }
+    return render(request, 'accounts/update_customer.html', contaxt)
+
+
+@allowed_users(allowed_roles=['admin'])
+@login_required(login_url='login')
 def createOrder(request, pk):
     OrderFormSet = inlineformset_factory(
         Customer, Order, fields=('product', 'status'), extra=5)

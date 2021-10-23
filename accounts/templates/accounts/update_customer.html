@@ -1,0 +1,33 @@
+{% extends 'accounts/main.html' %}
+{% block title %} Update Customer form {% endblock %}
+
+
+{% block content %}
+
+
+<div class="container mt-5">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row mt-2 ">
+            <div class="col-md-12">
+                Name: {{ form.name }}
+            </div>
+            <div class="col-md-12">
+                Phone: {{ form.phone }}
+            </div>
+            <div class="col-md-12">
+                Email: {{ form.email }}
+            </div>
+            <div class="col-md-12">
+                Images: {{ form.profile_pic }}
+            </div>
+        </div>
+
+
+
+        <input class="btn  btn-outline-success mt-5" type="submit" name="Submit" value="Submit">
+    </form>
+</div>
+
+
+{% endblock %}
