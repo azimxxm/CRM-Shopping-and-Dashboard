@@ -11,14 +11,14 @@ class Customer(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Product(models.Model):
@@ -34,7 +34,7 @@ class Product(models.Model):
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Order(models.Model):
@@ -51,4 +51,4 @@ class Order(models.Model):
     note = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return f'Name: {self.customer}, Product: {self.product.name}'
+        return f'Name: {str(self.customer)}, Product: {str(self.product.name)}'

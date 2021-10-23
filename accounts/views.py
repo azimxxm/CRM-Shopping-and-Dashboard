@@ -99,6 +99,7 @@ def accountSettings(request):
         form = CustomerForm(request.POST, request.FILES, instance=customer)
         if form.is_valid():
             form.save()
+            return redirect('user-page')
             
     contaxt = {
         'form':form,
