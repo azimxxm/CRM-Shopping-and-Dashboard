@@ -24,15 +24,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'products' %}">Products</a>
                 </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account' %}">Settings</a>
-                </li>
                 {% endif %}
             </ul>
         </div>
     </div>
     <span class="hello-msg">Hello,</span> 
-    <span class="hello-msg"><a class="btn-outline-info" href="">{{ request.user }}</a></span>
+    <span class="hello-msg"><a class="btn-outline-info" href="{% url 'account' %}">{{ request.user }}</a></span>
     <span class="hello-msg"><a class="btn btn-sm btn-warning" href="{% url 'logout' %}">Logout</a></span>
 </nav>
